@@ -1,7 +1,7 @@
 from pprint import pprint
-from collections import namedtuple
 
-Cell = namedtuple('Cell', 'attr, val')
+from utils import frozendict
+
 
 simple = """x, y
 a, b"""
@@ -26,6 +26,20 @@ a, c
 d, c
 e, c"""
 
+larger_example = """x, y, z
+a, b, {l, m, n}
+a, b, {l, m, n}
+a, b, {l, m, n}
+a, b, {l, n}
+a, b, {l, n}
+a, b, {l, n}
+c, d, {l, n, o}
+c, d, {n, o, p}
+c, e, {n, o, p}
+c, e, {n, o, p}
+c, e, {n, o, p}
+"""
+
 
 def parse_value(s):
     s = s.strip()
@@ -38,6 +52,16 @@ def parse_value(s):
     return s
 
 
+def build_tuple(s, sort):
+    p = map(parse_value, s.split(','))
+
+    t = {}  # tuple
+    for x in zip(sort, p):
+        if x[1] is not None:
+            t[x[0]] = x[1]
+    return frozendict(t)
+
+
 def read_sample(s):
     relation = []
 
@@ -46,16 +70,12 @@ def read_sample(s):
     sort = map(str.strip, rows[0].split(','))
 
     for row in rows[1:]:
-        p = row.split(',')
-        p = map(parse_value, p)
+        relation.append(build_tuple(row, sort))
 
-        t = []  # tuple
-        for x in zip(sort, p):
-            if x[1] is not None:
-                t.append(Cell(attr=x[0], val=x[1]))
-        relation.append(frozenset(t))
+    return relation
 
-    return sort, relation
 
 if __name__ == '__main__':
+    print(build_tuple('{a b}', ['x']))
+
     pprint(read_sample(three_attr_null))
