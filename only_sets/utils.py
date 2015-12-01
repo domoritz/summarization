@@ -10,7 +10,7 @@ def tuple_rep(t):
 
 
 def relation_rep(r):
-    return '\n'.join(map(tuple_rep, r))
+    return ' | '.join(map(tuple_rep, r))
 
 
 def powerset(iterable, min_size=0):
@@ -71,3 +71,10 @@ def cost(formulas, relation):
     c += sum(map(len, formulas))
 
     return c
+
+
+def get_cells(relation):
+    cells = set()
+    for t in relation:
+        cells.update(t)
+    return cells
