@@ -26,17 +26,17 @@ d, c
 e, c"""
 
 larger_example = """x, y, z
-a, b, {l, m, n}
-a, b, {l, m, n}
-a, b, {l, m, n}
-a, b, {l, n}
-a, b, {l, n}
-a, b, {l, n}
-c, d, {l, n, o}
-c, d, {n, o, p}
-c, e, {n, o, p}
-c, e, {n, o, p}
-c, e, {n, o, p}
+a, b, {l m n}
+a, b, {l m n}
+a, b, {l m n}
+a, b, {l n}
+a, b, {l n}
+a, b, {l n}
+c, d, {l n o}
+c, d, {n o p}
+c, e, {n o p}
+c, e, {n o p}
+c, e, {n o p}
 """
 
 

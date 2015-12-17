@@ -41,14 +41,13 @@ if __name__ == '__main__':
     print('Best cost:', best_cost)
     for s in map(relation_rep, [x[1] for x in best]):
         print(s)
-        print
 
     # speedtest
-    logger.setLevel(logging.WARN)
+    # logger.setLevel(logging.WARN)
 
-    def run():
-        relation = read_sample(larger_example)
-        return find_optimum(relation, 5)
+    # def run():
+    #     relation = read_sample(larger_example)
+    #     return find_optimum(relation, 5)
 
     # best_cost, best = run()
     # print('Best cost:', best_cost)
@@ -56,9 +55,9 @@ if __name__ == '__main__':
     #     print(s)
     #     print
 
-    import timeit
-    start_time = timeit.default_timer()
-    for x in range(100):
-        run()
-    elapsed = timeit.default_timer() - start_time
-    print(elapsed)
+    # import timeit
+    # start_time = timeit.default_timer()
+    # for x in range(1):
+    #     run()
+    # elapsed = timeit.default_timer() - start_time
+    # print(elapsed)

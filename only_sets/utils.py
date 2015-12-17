@@ -56,6 +56,30 @@ def satisfies_two(formula, relation):
     return False
 
 
+def potential(formula, formulas, relation):
+    p = 0
+
+    for t in relation:
+        # no need to do anything if tuples does not satisfy formula
+        if not satisfies(t, formula):
+            continue
+
+        tc = set(t)
+        # remove what is already covered
+        for f in formulas:
+            if satisfies(t, f):
+                tc.difference_update(f)
+                if len(tc) == 0:
+                    break
+
+        p += len(tc.intersection(formula))
+
+    # regularization
+    # p -= len(formula)
+
+    return p
+
+
 def cost(formulas, relation):
     c = 0
 
@@ -65,10 +89,12 @@ def cost(formulas, relation):
         for f in formulas:
             if satisfies(t, f):
                 tc.difference_update(f)
+                if len(tc) == 0:
+                    break
         c += len(tc)
 
     # regularization
-    c += sum(map(len, formulas))
+    # c += sum(map(len, formulas))
 
     return c
 
